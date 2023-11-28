@@ -1,0 +1,51 @@
+#timer-container {
+    opacity: 0;
+    display: grid;
+    column-gap: 1rem;
+    grid-template-columns: 1fr 1fr 0.1fr 1fr 1fr;
+        height: fit-content;
+        width: fit-content;
+
+    position: absolute;
+}
+
+#divider {
+    background-color: #2a2a2a;
+    height: 80%;
+    align-self: center;
+}
+
+.timerDigit {
+    display: grid;
+    position: relative;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+
+
+
+
+/**********************************************/
+
+
+    .inactive {
+        color: #2a2a2a;
+        text-shadow: none;
+    }
+
+    .currentSecond {
+        color: #FF8300;
+        text-shadow: 0px 0px 6px #FF8300;
+    }
+
+    .digitText   {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        top: 105%;
+        text-transform: uppercase;
+        text-shadow: none;
+        font-size: 13px;
+        color: #2a2a2a;
+    }

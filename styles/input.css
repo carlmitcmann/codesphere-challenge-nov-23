@@ -1,0 +1,47 @@
+#input-container {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    height: 29px;
+    overflow: visible;
+    text-shadow: none;
+    padding: 0px 5px;
+
+    border: solid 1px rgba(117, 117, 117, 0.468);
+    border-radius: 3px;
+
+    background-color: rgba(117, 117, 117, 0.156);
+}
+
+.scroll-area {
+    position: absolute;
+    min-height: 100%;
+    width:33.33%;
+    z-index: 10;
+} .scroll-area:nth-child(2) {
+    margin-left: 33.33%;
+} .scroll-area:nth-child(3) {
+    margin-left: 66.66%;
+}
+
+.sub-container {
+    display: flex;
+    gap: 10px;
+    height: inherit;
+    color: rgb(117, 117, 117);
+} .sub-container span {
+    align-self: center;
+}
+
+.time-input {
+    display: flex;
+    flex-direction: column;
+    color: #e2e2e2;
+
+    transition: transform 0s ease;
+} .time-input span {
+    padding: 5px 0px;
+
+    transition: opacity 0s;
+}

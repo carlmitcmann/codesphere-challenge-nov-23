@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/timer.css">
+    <link rel="stylesheet" href="styles/input.css">
+
+    <title>Typo Timer</title>
+</head>
+<body>
+
+    <button id="go-button">
+        <span> GO </span>
+    </button>
+
+
+    <div id="input-container">
+        <div class="scroll-area" id="hour-select-container"></div>
+        <div class="scroll-area" id="minute-select-container"></div>
+        <div class="scroll-area" id="second-select-container"></div>
+
+        <div class="sub-container" >
+            <div id="hour-select" class="time-input"></div>
+            <span>hours</span>
+        </div>
+
+        <div class="sub-container" id="minute-select-container">
+            <div id="minute-select" class="time-input"></div>
+            <span>minutes</span>
+        </div>
+
+        <div class="sub-container" id="second-select-container">
+            <div id="second-select" class="time-input"></div>
+            <span>seconds</span>
+        </div>
+        
+    </div>
+    
+    <div id="timer-container">
+        <div id="digit01" class="timerDigit">
+
+        </div>
+        <div id="digit02" class="timerDigit">
+            <div class="digitText"> hours </div>
+        </div>
+
+        <div id="divider"> </div>
+
+        <div id="digit03" class="timerDigit">
+
+        </div>
+        <div id="digit04" class="timerDigit">
+            <div class="digitText"> minutes </div>
+        </div>
+    </div>
+
+    
+
+    <script src="/scripts/input.js"></script>
+    <script src="/scripts/main.js"></script>
+</body>
+</html>
