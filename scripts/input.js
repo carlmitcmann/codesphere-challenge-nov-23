@@ -2,6 +2,7 @@
 
 var timeInputs = null
 var scrollAreas = null
+var goButton = null
     
 var spanHeight = null
     
@@ -10,6 +11,9 @@ var minuteIndex = 0
 var secondIndex = 0
 
 document.addEventListener('DOMContentLoaded', function() {
+    var container = document.getElementById("input-container")
+    container.classList.add("opacity-1")
+
     timeInputs = document.querySelectorAll('.time-input')
     scrollAreas = document.querySelectorAll('.scroll-area')
 
@@ -20,18 +24,22 @@ document.addEventListener('DOMContentLoaded', function() {
     var numberSpan = timeInputs[0].querySelector('span');
     if(numberSpan) {
         spanHeight = numberSpan.offsetHeight;
-        console.log("span height: ", spanHeight)
     }
 
     updateWheel()
 
-    var goButton = document.querySelector('#go-button');
-    if(goButton) {
+    goButton = document.querySelector('#go-button');
+    if(goButton != null) {
         goButton.addEventListener('click', function() {
             const startTimerEvent = new CustomEvent('startTimer', {
-                detail: { message: 'Hello from File 2' }
+                detail: { message: {
+                    "hours" : hourIndex,
+                    "minutes" : minuteIndex,
+                    "seconds" : secondIndex
+                } }
             });
             document.dispatchEvent(startTimerEvent);
+            goButton.classList.add("display-none")
         });
     }
     
@@ -65,6 +73,7 @@ function drawInput() {
 
     scrollAreas.forEach( (area, index) => {
         area.addEventListener('wheel', async (event) => {
+
             var direction = 0
 
             if(event.deltaY > 0) {
@@ -87,7 +96,14 @@ function drawInput() {
 
             updateWheel();
 
-            console.log(hourIndex + " hours     " + minuteIndex + " minutes     " + secondIndex + " seconds     ")
+                // hide/show go button
+                if(hourIndex == 0 & minuteIndex == 0 & secondIndex == 0) {
+                    goButton.classList.remove("button-visible")
+                } else {
+                    goButton.classList.add("button-visible")
+                }
+
+            //console.log(hourIndex + " hours     " + minuteIndex + " minutes     " + secondIndex + " seconds     ")
 
         });
     })
@@ -95,6 +111,8 @@ function drawInput() {
 
   
 }
+
+
 
 function updateWheel() {
     timeInputs.forEach( (input, index) => {

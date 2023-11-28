@@ -2,9 +2,27 @@ var timerActive = false
 
 var timerContainer = document.getElementById("timer-container")
 var inputContainer = document.getElementById("input-container")
+var resetButton = null
+var goButton = document.getElementById("go-button")
 
+/**
+ * start the timer
+ */ let seconds = 0; // timer seconds
+    let timer
 document.addEventListener('startTimer', function(event) {
-    console.log('Event received in File 1:', event.detail.message);
+    resetButton = document.getElementById("reset-button")
+    
+    var inputData = event.detail.message
+
+    seconds += inputData.hours * 60 * 60
+    seconds += inputData.minutes * 60
+    seconds += inputData.seconds
+
+    // start timer
+    timer = setInterval(countdown, 1000); // Calls countdown function every 1000 milliseconds (1 second)
+    
+    // switch from input view to timer view
+    toggleTimerView()
     
 });
 
@@ -12,16 +30,38 @@ document.addEventListener('startTimer', function(event) {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    if(timerActive) {
-        timerContainer.style.opacity = 1
-        inputContainer.style.opacity = 0
-    } else {
-        timerContainer.style.opacity = 0
-        inputContainer.style.opacity = 1
-    }
     drawClock([0,0,0,0,0])
-    const timer = setInterval(countdown, 1000); // Calls countdown function every 1000 milliseconds (1 second)
+
+    if( resetButton != null) {
+        resetButton.addEventListener('click', function() {
+            toggleTimerView()
+            seconds = 0
+        });
+    }
+    
 });
+
+function toggleTimerView() {
+    timerActive = !timerActive
+    if(timerActive) {
+        inputContainer.classList.add("opacity-0")
+
+        timerContainer.classList.add("opacity-1")
+
+
+        
+
+        
+        goButton.style.display = "none"
+    } else {
+        inputContainer.classList.remove("opacity-0")
+
+        timerContainer.classList.remove("opacity-1")
+
+        
+        goButton.style.display = "block"
+    }
+}
 
 function drawClock(numbers) {
     if(numbers.length!=5) {
@@ -76,7 +116,6 @@ function redrawClock(numbers) {
 /**
  * Timer function
  */
-let seconds = 86400; // 24 hours in seconds
 
 function countdown() {
     const hours = Math.floor(seconds / 3600);
@@ -97,14 +136,17 @@ function countdown() {
 
     //console.log(`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`);
 
-    if (seconds > 0) {
+    if (seconds >= 0) {
         redrawClock(timeArray)
         seconds--;
     } else {
-        clearInterval(timer);
         console.log('Countdown finished!');
+        clearInterval(timer);
     }
 }
+
+
+
 
 
 /**

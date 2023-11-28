@@ -18,18 +18,22 @@ body {
     position: absolute;
     height: 80px;
     width: 80px;
-    bottom: 5vh;
+    bottom: -10vh;
     z-index: 100;
 
     font-weight: 100;
     color: white;
     text-shadow: inherit;
 
+    cursor: pointer;
 
     background-color: rgba(117, 117, 117, 0.156);
 
     border: solid 1px rgba(117, 117, 117, 0.468);
     border-radius: 666px;
+
+    transition: transform 333ms ease-in-out;
+
 } #go-button span {
     position: absolute;
     top: 50%;
